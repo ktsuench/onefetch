@@ -1,27 +1,57 @@
 [package]
-name = "onefetch"
-description = "Git repository summary on your terminal"
-version = "2.0.1"
 authors = ["o2sh <ossama-hjaji@live.fr>"]
-readme = "README.md"
+description = "Git repository summary on your terminal"
+edition = "2018"
+exclude = ["assets/*", "tools/*"]
 license = "MIT"
+name = "onefetch"
+readme = "README.md"
 repository = "https://github.com/o2sh/onefetch"
-exclude = ["assets/*.png"]
+version = "2.9.1"
+
+[package.metadata.deb]
+depends = "$auto"
+extended-description = """\
+Onefetch is a command-line Git information tool written in Rust \
+that displays project information and code statistics \
+for a local Git repository directly on your terminal."""
+maintainer = "o2sh <ossama-hjaji@live.fr>"
+priority = "optional"
+section = "utility"
 
 [dependencies]
-colored= "1.8.0"
-git2 = {version = "0.7.5", default-features = false}
-tokei = "10.0"
-askalono = { git = "https://github.com/amzn/askalono.git", rev = "39f6e228775e17266bcba46f48b26b01bbfb7698" }
-bytecount = "0.5.1"
-clap = "2.33.0"
-strum = "0.16.0"
-strum_macros = "0.16.0"
-image = "0.22.3"
+askalono = "0.4.3"
+byte-unit = "4.0.11"
+bytecount = "0.6.2"
+chrono = "0.4"
+chrono-humanize = "0.2.1"
+clap = "2.33.3"
+color_quant = "1.1.0"
+colored = "2.0.0"
+error-chain = "0.12"
+git2 = {version = "0.13.18", default-features = false}
+image = "0.23.14"
+json = "0.12.4"
+regex = "1.4.6"
+serde = "1.0.125"
+serde_json = "1.0.64"
+serde_yaml = "0.8"
+strum = {version = "0.20.0", features = ["derive"]}
+term_size = "0.3.2"
+tokei = "12.1.2"
+toml = "0.5.8"
+yaml-rust = "0.4"
 
 [target.'cfg(windows)'.dependencies]
 ansi_term = "0.12"
 
-[target.'cfg(target_os = "linux")'.dependencies]
-libc = "0.2.65"
-base64 = "0.11.0"
+[target.'cfg(not(windows))'.dependencies]
+base64 = "0.13.0"
+libc = "0.2.94"
+
+[dev-dependencies]
+more-asserts = "0.2"
+paste = "1.0.5"
+
+[features]
+fail-on-deprecated = []
